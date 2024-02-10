@@ -7,7 +7,7 @@ const Suggest = () => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
   useEffect(() => {
-    invoke<string[]>('suggest', { context: '' })
+    invoke<string[]>('suggest', { context: 'Good way to improve my motivation.' })
       .then((response) => {
       setSuggestions(response);
     }).catch(console.error);
