@@ -9,6 +9,14 @@ use openai_api_rs::v1::common::GPT3_5_TURBO_1106;
 use crate::error::Error;
 
 pub(crate) fn run(context: &str) -> Result<Vec<String>, Box<dyn std::error::Error>> {
+    if cfg!(debug_assertions) {
+        return Ok(vec![
+            "Suggestion 1".to_owned(),
+            "Suggestion 2".to_owned(),
+            "Suggestion 3".to_owned(),
+        ]);
+    }
+
     let api_key = env::var("OPENAI_API_KEY")
         .expect("`OPENAI_API_KEY` must be set.")
         .to_owned();
