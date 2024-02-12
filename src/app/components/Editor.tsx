@@ -1,3 +1,4 @@
+"use client";
 import { BlockNoteEditor } from "@blocknote/core";
 
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
@@ -6,12 +7,15 @@ import "@blocknote/core/style.css";
 import { useTheme } from "next-themes";
 
 interface EditorProps {
-  onChange: (value: string) => void;
   initialContent?: string;
   editable?: boolean;
 }
 
-const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
+const onChange = (editor: any) => {
+  console.log(editor);
+};
+
+const Editor = ({ initialContent, editable }: EditorProps) => {
   const resolvedTheme = useTheme().resolvedTheme;
 
   const editor: BlockNoteEditor = useBlockNote({

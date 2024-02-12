@@ -1,19 +1,16 @@
 import Suggest from "./suggest";
-import Editor from "./components/Editor";
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(() => import("./components/Editor"), { ssr: false });
 
 const App = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-blue-300">
+    <div>
       <Suggest />
-      <Editor
-        onChange={(value) => {
-          // TODO: update document
-          console.log(value);
-        }}
-        initialContent="Hello Brainlight!"
-        editable={true}
-      />
-    </main>
+      <main className="flex min-h-screen flex-col items-left justify-between p-24 bg-blue-300">
+        <Editor initialContent="{}" editable={true} />
+      </main>
+    </div>
   );
 };
 
