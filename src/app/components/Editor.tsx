@@ -11,6 +11,28 @@ interface EditorProps {
   editable?: boolean;
 }
 
+const askAI = (editor: BlockNoteEditor) => {
+  const currentBlock = editor.getTextCursorPosition().block;
+  const suggestionBlock = {
+    type: "text" as const,
+    text: "text",
+    styles: {
+      bold: true,
+    },
+  } as const;
+
+  editor.insertBlocks([suggestionBlock as any], currentBlock, "after");
+};
+
+const askAIMenuItem = {
+  name: "Ask AI to brainstorm",
+  execute: askAI,
+  aliases: ["ai", "bs"],
+  group: "Other",
+  icon: <div>"🧠"</div>,
+  hint: "Ask AI to brainstorm",
+};
+
 const onChange = (editor: any) => {
   console.log(editor);
 };
@@ -21,6 +43,7 @@ const Editor = ({ initialContent, editable }: EditorProps) => {
   const editor: BlockNoteEditor = useBlockNote({
     editable,
     initialContent: initialContent ? JSON.parse(initialContent) : undefined,
+    slashMenuItems: [askAIMenuItem],
     onEditorContentChange(editor) {
       onChange(JSON.stringify(editor.topLevelBlocks, null, 2));
     },
