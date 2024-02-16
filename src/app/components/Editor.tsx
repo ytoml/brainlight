@@ -1,5 +1,6 @@
 "use client";
 import { BlockNoteEditor } from "@blocknote/core";
+import icon from "../../public/brainlight.png";
 
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
 
@@ -29,8 +30,8 @@ const askAIMenuItem = {
   execute: askAI,
   aliases: ["ai", "bs"],
   group: "Other",
-  icon: <div>"🧠"</div>,
-  hint: "Ask AI to brainstorm",
+  icon: <img src="/brainlight.png" alt="AI" width={40} height={40} />,
+  hint: "Expand your idea with some suggestions from AI.",
 };
 
 const onChange = (editor: any) => {
